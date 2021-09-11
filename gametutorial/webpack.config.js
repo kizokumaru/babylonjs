@@ -7,7 +7,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 module.exports = {
     entry: path.resolve(appDirectory, "src/app.ts"), //path to the main .ts file
     output: {
-        filename: "js/bundleName.js", //name for the javascript file that is created/compiled in memory
+        filename: "js/bundleName.js", //name for the js file that is created/compiled in memory
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
@@ -15,9 +15,11 @@ module.exports = {
     devServer: {
         host: "0.0.0.0",
         port: 8080, //port that we're using for local host (localhost:8080)
-        disableHostCheck: true,
-        contentBase: path.resolve(appDirectory, "public"), //tells webpack to serve from the public folder
-        publicPath: "/",
+        allowedHosts: 'all',
+        static: {
+            directory: path.resolve(appDirectory, "public"), //tells webpack to serve from the public folder
+            publicPath: "/"
+        },
         hot: true,
     },
     module: {
